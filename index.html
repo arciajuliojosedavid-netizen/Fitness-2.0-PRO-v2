@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0f14">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Fitness 2.0 Pro</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <span class="brand">FITNESS 2.0</span>
+    <h1 id="pageTitle">Inicio</h1>
+  </div>
+  <div class="streak"><span>🔥</span><b id="streakDays">0</b><small>días</small></div>
+</header>
+
+<main>
+  <section id="homeView" class="view active">
+    <div class="hero">
+      <div class="hero-copy">
+        <span class="pill">RECOMPOSICIÓN</span>
+        <h2>Más fuerte.<br>Más consistente.</h2>
+        <p>Tu rutina, tus marcas y tu progreso en un solo lugar.</p>
+      </div>
+      <div class="hero-ring"><strong id="weeklyDone">0/5</strong><span>esta semana</span></div>
+    </div>
+
+    <div class="section-title"><h3>Semana</h3><span id="weekLabel"></span></div>
+    <div class="week" id="weekGrid"></div>
+
+    <div class="section-title"><h3>Entrenamiento de hoy</h3></div>
+    <div id="todayCard"></div>
+
+    <div class="section-title"><h3>Resumen</h3></div>
+    <div class="metrics">
+      <div class="metric"><span>Entrenos</span><strong id="homeWorkouts">0</strong></div>
+      <div class="metric"><span>Series</span><strong id="homeSets">0</strong></div>
+      <div class="metric"><span>Récords</span><strong id="homePRs">0</strong></div>
+    </div>
+  </section>
+
+  <section id="workoutView" class="view">
+    <div class="workout-hero">
+      <div>
+        <span class="pill" id="workoutDay"></span>
+        <h2 id="workoutName"></h2>
+        <p id="workoutFocus"></p>
+      </div>
+      <button id="startWorkoutBtn" class="primary">Empezar</button>
+    </div>
+    <div id="exerciseList"></div>
+  </section>
+
+  <section id="progressView" class="view">
+    <div class="metrics">
+      <div class="metric"><span>Entrenos</span><strong id="statWorkouts">0</strong></div>
+      <div class="metric"><span>Series</span><strong id="statSets">0</strong></div>
+      <div class="metric"><span>Peso</span><strong id="statWeight">—</strong></div>
+    </div>
+
+    <div class="section-title"><h3>Peso corporal</h3></div>
+    <div class="panel input-card">
+      <input id="bodyWeightInput" type="number" inputmode="decimal" step="0.1" placeholder="Peso en kg">
+      <button class="primary" id="saveWeightBtn">Guardar</button>
+    </div>
+
+    <div class="panel chart-card"><canvas id="weightChart" width="800" height="320"></canvas></div>
+
+    <div class="section-title"><h3>Récords personales</h3></div>
+    <div id="prList"></div>
+
+    <div class="section-title"><h3>Historial</h3></div>
+    <div id="historyList"></div>
+  </section>
+
+  <section id="settingsView" class="view">
+    <div class="panel">
+      <span class="pill">PERFIL</span>
+      <div class="profile">
+        <div><small>Edad</small><strong>22</strong></div>
+        <div><small>Altura</small><strong>1,65 m</strong></div>
+        <div><small>Objetivo</small><strong>Recomposición</strong></div>
+        <div><small>Frecuencia</small><strong>5 días</strong></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Reglas de la fase inicial</h3>
+      <div class="rule"><b>Semanas 1–2</b><span>RIR ≈ 3. Recuperar técnica y tolerancia.</span></div>
+      <div class="rule"><b>Semanas 3–4</b><span>Si recuperas bien, RIR 1–2.</span></div>
+      <div class="rule"><b>Progresión</b><span>Completa el rango alto y luego aumenta carga.</span></div>
+      <div class="rule"><b>Fin de semana</b><span>Descanso; caminar suave está bien.</span></div>
+    </div>
+
+    <button class="danger" id="clearDataBtn">Borrar todos los registros</button>
+  </section>
+</main>
+
+<nav class="bottom-nav">
+  <button class="nav-btn active" data-view="homeView"><span>⌂</span><small>Inicio</small></button>
+  <button class="nav-btn" data-view="workoutView"><span>◫</span><small>Rutina</small></button>
+  <button class="nav-btn" data-view="progressView"><span>↗</span><small>Progreso</small></button>
+  <button class="nav-btn" data-view="settingsView"><span>⚙</span><small>Ajustes</small></button>
+</nav>
+
+<div id="timerBar" class="timer hidden">
+  <div><small>DESCANSO</small><strong id="timerText">01:30</strong></div>
+  <button id="minusTimer">−15</button><button id="plusTimer">+15</button><button id="stopTimer">✕</button>
+</div>
+
+<div class="modal hidden" id="exerciseModal">
+  <div class="modal-sheet">
+    <button class="modal-close" id="closeModal">✕</button>
+    <div id="modalArt" class="modal-art"></div>
+    <span class="pill" id="modalMuscle"></span>
+    <h2 id="modalTitle"></h2>
+    <p id="modalMeta"></p>
+    <div class="tips" id="modalTips"></div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
